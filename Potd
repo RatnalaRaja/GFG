@@ -1,0 +1,404 @@
+
+Exploring the Longest Substring with K Unique Characters Problem
+ 
+Introduction:
+
+In the realm of algorithmic problem-solving, the Longest Substring with K Unique Characters poses an interesting challenge. This problem involves finding the longest substring within a given string that contains exactly K unique characters. This article delves into the problem's background, presents an intuitive approach to solving it, provides optimized code implementations, walks through a dry run for clarity, and analyzes the time and space complexity.
+
+ 
+Understanding the Problem:
+Given a string and an integer K, the task is to find the length of the longest substring that contains exactly K unique characters. This implies that the substring can have fewer than K unique characters, but not more. The goal is to determine the length of the maximum valid substring.
+
+ 
+Approach:
+To tackle this problem, we can employ a sliding window approach. The idea is to maintain a window that continuously expands until the number of unique characters within it exceeds K. Once the constraint is violated, we slide the window's left end to the right, reducing the window size until it satisfies the K unique characters condition again. During this process, we keep track of the maximum window length encountered, which will be our solution.
+
+ 
+Optimized Code:
+Below is the Python implementation of the approach:
+
+class Solution:
+    
+    def longestKSubstr(self, s, k):
+        if k == 0:
+            return 0
+        
+        char_freq = {}
+        max_length = -1
+        left = 0
+        
+        for right in range(len(s)):
+            if s[right] not in char_freq:
+                char_freq[s[right]] = 0
+            char_freq[s[right]] += 1
+            
+            while len(char_freq) > k:
+                char_freq[s[left]] -= 1
+                if char_freq[s[left]] == 0:
+                    del char_freq[s[left]]
+                left += 1
+            
+            if len(char_freq)==k:
+                max_length = max(max_length, right - left + 1)
+        
+        return max_length
+ 
+
+Dry Run:
+Let's perform a dry run of the algorithm with the string "aabbccddd" and K = 2:
+
+Certainly, let's perform a dry run of the given code with the example string "aabbccddd" and K = 2:
+
+ 
+
+Initialize values: s = "aabbccddd", k = 2
+Initialize variables: char_freq = {}, max_length = -1, left = 0
+
+
+
+Loop through the string using the right pointer:
+
+1. Right pointer at index 0 ('a'):
+
+
+
+char_freq updated: {'a': 1}
+
+ 
+
+ 
+
+2. Right pointer at index 1 ('a'):
+
+
+char_freq updated: {'a': 2}
+
+
+3.Right pointer at index 2 ('b'):
+
+
+char_freq updated: {'a': 2, 'b': 1}
+
+
+4.Right pointer at index 3 ('b'):
+
+
+
+char_freq updated: {'a': 2, 'b': 2}
+
+
+5.Right pointer at index 4 ('c'):
+
+
+
+char_freq updated: {'a': 2, 'b': 2, 'c': 1}
+
+Since the lenght of the char_freq is greater than k now while loop will reduce the length of window
+
+
+
+char_freq updated: {'a': 1, 'b': 2, 'c': 1}
+
+
+
+char_freq updated: {'b': 2, 'c': 1}
+
+6.Right pointer at index 5 ('c'):
+
+
+char_freq updated: {'b': 2, 'c': 2}
+
+
+7.Right pointer at index 6 ('d'):
+
+
+
+char_freq updated: {'b':2, 'c': 2, 'd': 1}
+
+
+now while loop will start reducing the lenght of window to reduce the number of unique characters
+
+
+
+char_freq updated: {'b':1, 'c': 2, 'd': 1}
+
+
+
+char_freq updated: {'c': 2, 'd': 1}
+
+8.Right pointer at index 7('d'):
+
+
+
+char_freq updated: {'c': 2, 'd': 2}
+
+ 
+
+9.Right pointer at index 8('d'):
+
+
+
+char_freq updated: {'c': 2, 'd': 3}
+
+ 
+
+ 
+
+Final result: The longest substring with at most 2 distinct characters is "ccddd" with a length of 5.
+
+
+
+The window contracts and expands while keeping track of the maximum valid substring length.
+
+Time and Space Complexity:
+The time complexity of this algorithm is O(N), where N is the length of the input string. This is because each character is processed exactly twice (once in the expanding phase and once in the contracting phase).
+
+The space complexity is O(K), as the char_freq dictionary can contain at most K unique characters.
+
+ 
+
+Conclusion:
+The Longest Substring with K Unique Characters problem can be efficiently solved using a sliding window approach. By carefully expanding and contracting the window while tracking the maximum valid substring length, we can achieve an optimal solution. The approach presented in this article provides a clear and intuitive strategy to address this problem, along with optimized code and an understanding of its time and space complexity.
+
+Show 1 Replies
++1
+
+yogesh_jaiswal
+8 minutes ago
+
+JAVA Solution Sliding Window
+
+class Solution {
+    public int longestkSubstr(String s, int k) {
+        // code here
+        HashMap<Character,Integer> map=new HashMap<>();
+        int count=0;
+        int i=0;
+        int j=0;
+        int max=0;
+        int n=s.length();
+        while(i<n && j<n)
+        {
+            map.put(s.charAt(j),map.getOrDefault(s.charAt(j),0)+1);
+            count++;
+            if(map.size()==k)
+            {
+                if(max<count)
+                    max=count;    
+            }
+            while(i<n && map.size()>k)
+            {
+                
+                map.replace(s.charAt(i),map.get(s.charAt(i))-1);
+                if(map.get(s.charAt(i))==0)
+                {
+                    map.remove(s.charAt(i));
+                }
+                count--;
+                i++;
+            }
+            j++;
+        }
+        if(max==0)
+            return -1;
+        return max;
+    }
+}
+Show 1 Replies
+0
+
+prabhat1137
+13 minutes ago
+
+//{ Driver Code Starts
+// Initial Template for Java
+
+import java.io.*;
+import java.util.*;
+
+class GfG {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while (t-- > 0) {
+            String s = sc.next();
+            int k = sc.nextInt();
+            Solution obj = new Solution();
+            System.out.println(obj.longestkSubstr(s, k));
+        }
+    }
+}
+// } Driver Code Ends
+
+
+// User function Template for Java
+
+class Solution {
+    public int longestkSubstr(String s, int k) {
+        // code here
+        int i,j;
+        int count=0;
+        int start=0;
+        int max=0;
+        boolean isFound=false;
+        int uniqueCount=0;
+        HashMap<Character,Integer> map=new HashMap<>();
+        int n=s.length();
+        for(i=0;i<n;i++)
+        {
+            char c=s.charAt(i);
+            if(map.containsKey(c))
+            {
+                int v=map.get(c);
+                v++;
+                count++;
+                map.put(c,v);
+                if(count>max)
+                    {
+                        max=count;
+                    }
+                
+            }else{
+                if(uniqueCount<k)
+                {
+                    map.put(c,1);
+                    count++;
+                    uniqueCount++;
+                    if(uniqueCount==k)
+                    {
+                        isFound=true;
+                    }
+                    if(count>max)
+                    {
+                        max=count;
+                    }
+                }else if(uniqueCount==k)
+                {
+                    isFound=true;
+                    while(uniqueCount==k && start<n-1 && start>=0)
+                    {
+                        char d=s.charAt(start);
+                        //System.out.println(d);
+                        start++;
+                        if(map.get(d)==1)
+                        {
+                            map.remove(d);
+                            uniqueCount--;
+                            count--;
+                            //start++;
+                        }else{
+                            if(map.get(d)>=2)
+                            {
+                                int v=map.get(d);
+                                v--;
+                                count--;
+                                map.put(d,v);
+                            }
+                            
+                        }
+                    }
+                    
+                    map.put(c,1);
+                    count++;
+                    uniqueCount++;
+                    if(count>max)
+                    {
+                        max=count;
+                    }
+                }
+            }
+        }
+        
+        if(isFound)
+        {
+            return max;
+        }else{
+            return -1;
+        }
+        
+    }
+}
+
+0
+
+pavaneeshwar7077
+27 minutes ago
+
+Simple JAVA no confusion
+
+Take 2 pointers, 
+
+move one pointer until your hashmap size becomes K and may be more than K if so loop until your hashmap size becomes less than or equal to k. Now check with the max length if it is greater change it as new maxLength.
+
+
+class Solution {
+    public int longestkSubstr(String s, int k) {
+        int maxLen = -1;
+        HashMap<Character,Integer>hmp = new HashMap<>();
+        int i=0,j=0;
+        int n=s.length();
+        while(j<n){
+            hmp.compute(s.charAt(j),(key,value)->value==null?1:value+1);
+            while(hmp.size()>k){
+                hmp.compute(s.charAt(i),(key,value)->value==1?null:value-1);
+                i++;
+            }
+            if(hmp.size()==k)
+                maxLen = Math.max(j-i+1,maxLen);
+            j++;
+        }
+        return maxLen;
+    }
+}
+
++1
+
+alokrawsgyu
+35 minutes ago
+
+#C++ longest k unique subset (sliding window techniques)
+
+class Solution{
+  public:
+    int longestKSubstr(string s, int k) {
+    // your code here
+    int n = s.size();
+
+    // Check if the string size is less than k
+    if(n < k) {
+        return -1;
+    }
+
+    unordered_map<char, int> char_freq;
+    int start = 0, end = 0, max_len = -1;
+
+    while(end < n) {
+        // Add current character to char_freq map
+        char_freq[s[end]]++;
+
+        // If the number of unique characters in the map becomes more than k
+        // then shrink the window from left
+        while(char_freq.size() > k) {
+            char_freq[s[start]]--;
+            if(char_freq[s[start]] == 0) {
+                char_freq.erase(s[start]);
+            }
+            start++;
+        }
+
+        // Update the max_len if the current window size is greater 
+        // and we have exactly k unique characters
+        if(char_freq.size() == k) {
+            max_len = max(max_len, end - start + 1);
+        }
+
+        end++;
+    }
+
+    // If no substring found with k unique characters
+    if(max_len == -1) {
+        return -1;
+    }
+
+    return max_len;
+    }
