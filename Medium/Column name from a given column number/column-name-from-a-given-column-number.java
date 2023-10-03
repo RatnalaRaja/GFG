@@ -32,7 +32,8 @@ class Solution
 {
     String colName (long n)
     {
-        StringBuilder columnName = new StringBuilder();
+        // your code here
+ StringBuilder columnName = new StringBuilder();
         
         while(n > 0){
             long rem = n % 26;
@@ -47,5 +48,4 @@ class Solution
         }
         return columnName.reverse().toString();
     }
-
 }
