@@ -10,7 +10,6 @@ using namespace std;
 class Solution {
   public:
     string removeKdigits(string S, int K) {
-        
           int n=S.size();
         vector<int>v(10,0);
         stack<char>st;
