@@ -9,30 +9,40 @@ using namespace std;
 
 class Solution {
   public:
-    string removeKdigits(string S, int k) {
+    string removeKdigits(string S, int K) {
         
-          if(k==S.size()) return "0";
-        string str="";
-        for(int i=0;i<S.size();i++){
-            while(str.size()>0&&k>0&&str.back()>S[i]){
-                str.pop_back();
-                k--;
+          int n=S.size();
+        vector<int>v(10,0);
+        stack<char>st;
+        for(int i=0;i<n;i++)
+        {
+            while(!st.empty()&&S[i]<st.top()&&K>0)
+            {
+                st.pop();
+                K--;
             }
-            str+=S[i];
-            
+            if(st.empty()&&S[i]=='0')
+            continue;
+            st.push(S[i]);
         }
-        
-        while(k>0&&str.size()>0){
-            str.pop_back();
-            k--;
+        while(!st.empty()&& K--)
+        {
+           st.pop();
         }
-          int i=0;
-         while(str[i]=='0' && i<str.size()){
-           i++;
+
+       if(st.empty())
+       {
+       return "0";
        }
-      
-        if(i==str.size()) return "0";
-        return str.substr(i);
+       string ans="";
+
+        while(!st.empty())
+        {
+            ans+=st.top();
+            st.pop();
+        }
+        reverse(ans.begin(),ans.end());
+        return ans;
     }
 };
 
