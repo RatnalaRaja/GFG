@@ -10,7 +10,7 @@ class Solution
     public:
     vector<int> repeatedRows(vector<vector<int>> &matrix, int M, int N) 
     { 
-          unordered_map<int,int>mp;
+         unordered_map<int,int>mp;
         vector<int>ans;
         for(int i =0 ;i<M;i++){
             int val =0;
