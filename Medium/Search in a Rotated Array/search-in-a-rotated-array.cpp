@@ -5,16 +5,15 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
     public:
-    int search(int A[], int l, int h, int key)
-      {
-        for(int i=l;i<=h/2;i++)
-        {
-            if(A[i]==key)
-                return i;
-            if(A[h-i]==key)
-                return h-i;
+    int search(int A[], int l, int h, int key){
+        // l: The starting index
+        // h: The ending index, you have to search the key in this range
+        int ans=-1;
+        for(int i=l;i<=h;i++){
+            if(A[i]==key)ans=i;
         }
-        return -1;
+        return ans;
+        //complete the function here
     }
 };
 
