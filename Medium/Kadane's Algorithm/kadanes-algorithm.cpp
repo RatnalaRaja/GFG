@@ -11,22 +11,16 @@ class Solution{
     //Function to find the sum of contiguous subarray with maximum sum.
     long long maxSubarraySum(int arr[], int n){
         
-       long sum=0;
-        long maxsum=arr[0];
-        for(int i=0;i<n;i++)
-        {
-            sum+=arr[i];
-            
-           maxsum=max(maxsum,sum);
-            
-            if(sum<0)
-            
-              sum=0;
+        // Your code here
+        long long csum=0;
+        long long msum=INT_MIN;
+        for(int i=0;i<n;i++){
+             csum += arr[i];
+        if(csum > msum)  msum = csum;
+        if(csum < 0) csum=0;
         }
-        
-        return maxsum;
-        
-    }
+        return msum;
+  }
 };
 
 //{ Driver Code Starts.
