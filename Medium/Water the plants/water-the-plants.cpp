@@ -10,7 +10,7 @@ using namespace std;
 
 class Solution{
     public:
-     int min_sprinklers(int gallery[], int n)
+   int min_sprinklers(int gallery[], int n)
     {
         // code here
         vector<long long int> jump(n, -1);
@@ -33,7 +33,6 @@ class Solution{
         return res;
     }
 };
-
 
 //{ Driver Code Starts.
 
