@@ -6,35 +6,35 @@ using namespace std;
 
 
 // } Driver Code Ends
-//User function Template for C++
-
+//User function Template for C+
 class Solution {
   public:
-    void solve(vector<int>arr,int n,int index,set<vector<int>>&st){
-               if(index==n-1){
-                   st.insert(arr);
-                   return;
-               }
-               for(int j=index;j<n;j++){
-                   swap(arr[index],arr[j]);
-                   solve(arr,n,index+1,st);
-                   swap(arr[index],arr[j]);
-               }
+    set<vector<int>>st ;
+    
+    void solve( vector<int>&arr , int index )
+    {
+        if( index == arr.size() )
+        {
+            st.insert(arr) ;
+            return ;
+        }
+        
+        for( int i = index ; i < arr.size() ; i++ )
+        {
+            swap( arr[i] , arr[index] ) ;
+            solve( arr , index+1 )  ;
+            swap( arr[i] , arr[index] ) ;
+        }
         
     }
     vector<vector<int>> uniquePerms(vector<int> &arr ,int n) {
         // code here
-              vector<vector<int>> ans;
-              set<vector<int>>st;
-              solve(arr,n,0,st);
-              for(auto i:st){
-                  ans.push_back(i);
-              }
-              return ans;
+        st.clear() ;
+        solve( arr , 0 ) ;
+        vector<vector<int>>ans( st.begin() , st.end() ) ;
+        return ans ;
     }
 };
-
-
 
 //{ Driver Code Starts.
 
