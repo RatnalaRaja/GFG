@@ -1,7 +1,7 @@
 #User function Template for python3
 
 class Solution:
-    def kTop(self, arr, N, K):
+     def kTop(self, arr, N, K):
         final_ans=[]
         top = [0 for i in range(K + 1)] 
         freq = {i:0 for i in range(K + 1)} 
@@ -38,7 +38,6 @@ class Solution:
             
             final_ans += [ans]
         return final_ans
-
 
 
 
