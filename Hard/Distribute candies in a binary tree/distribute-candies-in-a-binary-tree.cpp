@@ -97,7 +97,7 @@ struct Node {
 class Solution
 {
     public:
-    int solve(Node *root, int &ans)
+   int solve(Node *root, int &ans)
     {
         if(root==NULL)
         {
