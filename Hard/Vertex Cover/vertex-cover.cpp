@@ -11,7 +11,7 @@ class Solution{
     public:
         int vertexCover(int n, vector<pair<int, int>> &edges) {
                 // code here
-           int total = 1<<n;
+            int total = 1<<n;
                 int mini=1e9 ;
                 for(int i=0;i<total;i++){
                     int curr = i ;
