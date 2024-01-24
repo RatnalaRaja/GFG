@@ -36,7 +36,7 @@ public:
 // } Driver Code Ends
 class Solution {
   public:
-  bool isCyclic(unordered_map<int, vector<int>> &adjList, int i, vector<int> &visited, int parent){
+   bool isCyclic(unordered_map<int, vector<int>> &adjList, int i, vector<int> &visited, int parent){
         visited[i] = 1;
         
         for(auto pa:adjList[i]){
