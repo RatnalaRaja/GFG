@@ -39,8 +39,7 @@ private:
                             seen.insert(temp);
                         }
                         temp-=(factor*val);
-                        // 60 
-                        // 3164 -> 3104... 
+                         
                         
                     }
                 }
@@ -50,7 +49,6 @@ private:
         return -1;      
     }
 };
-
 
 //{ Driver Code Starts.
 signed main()
