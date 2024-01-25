@@ -16,19 +16,19 @@ private:
   public:
     int solve(int Num1,int Num2)
     {   
-        unordered_set<int> seen;    // 
+        unordered_set<int> seen;    
         queue<int> q;
         q.push(Num1);
         seen.insert(Num1);
         int levels=0;
         while(q.size()){
             int sz=q.size();
-            while(sz--){        // process all nodes at the level in this iteration
+            while(sz--){      
                 int num=q.front();
                 q.pop();
                 if(num==Num2)   return levels;
-                for(int i=0;i<4;i++){   // 3124 // pow(10,1) -> 10
-                    int factor=pow(10,i);       // 
+                for(int i=0;i<4;i++){  
+                    int factor=pow(10,i);        
                     int temp=num;
                     temp-=(factor*((temp/factor)%10));
                     
@@ -39,7 +39,7 @@ private:
                             seen.insert(temp);
                         }
                         temp-=(factor*val);
-                         
+                        
                         
                     }
                 }
@@ -49,6 +49,7 @@ private:
         return -1;      
     }
 };
+
 
 //{ Driver Code Starts.
 signed main()
