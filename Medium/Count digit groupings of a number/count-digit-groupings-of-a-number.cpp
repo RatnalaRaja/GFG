@@ -5,7 +5,7 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
 	public:
-int TotalCount(string str) {
+	int TotalCount(string str) {
         // Code here
         int n = str.length();
         vector<vector<int>>dp(n, vector<int>(1000, -1));
