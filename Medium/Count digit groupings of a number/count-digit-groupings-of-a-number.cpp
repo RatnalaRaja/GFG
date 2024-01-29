@@ -27,7 +27,6 @@ int TotalCount(string str) {
         
         return dp[i][prevSum] = ans;
     }
-
 };
 
 //{ Driver Code Starts.
