@@ -56,7 +56,7 @@ class Solution
 {
     public:
         //Function to insert string into TRIE.
-          void insert(struct TrieNode *root, string key)
+            void insert(struct TrieNode *root, string key)
 
         {
 
