@@ -12,7 +12,7 @@ class Solution
 {
   public:
     //Function to check if a string is Pangram or not.
-    bool checkPangram (string s) {
+   bool checkPangram (string s) {
         // your code here
         map<char, int>mp;
         for(auto i : s){
