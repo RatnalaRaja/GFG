@@ -23,7 +23,7 @@ Given Tree is
 <strong>Output:</strong>
 3
 <strong>Explanation:</strong> 
-Three leaves are 3 , 5 and 1.</span></pre>
+Three leaves are 3 , 5 , and 1.</span></pre>
 
 <p>&nbsp;</p>
 
